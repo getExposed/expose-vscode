@@ -1,0 +1,173 @@
+{
+  "name": "expose-vscode",
+  "displayName": "Expose Agent",
+  "description": "Run and manage the Expose agent from VS Code.",
+  "version": "0.6.0",
+  "publisher": "dragonsecurity",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "extensionKind": ["workspace"],
+  "categories": ["Other"],
+  "contributes": {
+    "commands": [
+      {
+        "command": "expose.startAgent",
+        "title": "Expose: Start Agent"
+      },
+      {
+        "command": "expose.stopAgent",
+        "title": "Expose: Stop Agent"
+      },
+      {
+        "command": "expose.run",
+        "title": "Expose: Run Command…"
+      },
+      {
+        "command": "expose.installOrUpdate",
+        "title": "Expose: Install/Update Agent"
+      },
+      {
+        "command": "expose.createConfigFile",
+        "title": "Expose: Create .expose.json"
+      },
+      {
+        "command": "expose.setPassword",
+        "title": "Expose: Set Password (Secret Storage)"
+      },
+      {
+        "command": "expose.clearPassword",
+        "title": "Expose: Clear Password (Secret Storage)"
+      }
+    ],
+    "configuration": {
+      "title": "Expose",
+      "properties": {
+        "expose.configFile": {
+          "type": "string",
+          "default": "",
+          "description": "Optional path to a JSON config file (e.g. ${workspaceFolder}/.expose.json). Values in this file override VS Code settings.",
+          "scope": "window"
+        },
+        "expose.autoRestartOnConfigChange": {
+          "type": "boolean",
+          "default": true,
+          "description": "If the agent is running and the config file changes, automatically restart the agent.",
+          "scope": "window"
+        },
+
+        "expose.path": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to an existing Expose binary. Leave empty to auto-install the latest release.",
+          "scope": "window"
+        },
+        "expose.autoInstall": {
+          "type": "boolean",
+          "default": true,
+          "description": "If no path is set, automatically download the latest expose for your OS/arch from GitHub Releases.",
+          "scope": "window"
+        },
+
+        "expose.cwd": {
+          "type": "string",
+          "default": "${workspaceFolder}",
+          "description": "Working directory for the agent process. Supports ${workspaceFolder}.",
+          "scope": "window"
+        },
+
+        "expose.sshHost": {
+          "type": "string",
+          "default": "getexposed.io",
+          "description": "SSH host for Expose.",
+          "scope": "window"
+        },
+        "expose.sshPort": {
+          "type": "number",
+          "default": 2200,
+          "description": "SSH port for Expose.",
+          "scope": "window"
+        },
+        "expose.localHost": {
+          "type": "string",
+          "default": "localhost",
+          "description": "Local host to expose.",
+          "scope": "window"
+        },
+        "expose.localPort": {
+          "type": "number",
+          "default": 7500,
+          "description": "Local port to expose.",
+          "scope": "window"
+        },
+        "expose.bindPort": {
+          "type": "number",
+          "default": 0,
+          "description": "Bind port (0 = auto).",
+          "scope": "window"
+        },
+
+        "expose.id": {
+          "type": "string",
+          "default": "",
+          "description": "Expose ID (optional).",
+          "scope": "window"
+        },
+
+        "expose.keepAlive": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable keep-alive mode (-a).",
+          "scope": "window"
+        },
+        "expose.autoReconnect": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable auto-reconnect (-r).",
+          "scope": "window"
+        },
+
+        "expose.args": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Extra arguments appended to the generated args (e.g. [\"--version\"]).",
+          "scope": "window"
+        },
+
+        "expose.composeFile": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Optional docker compose file. If set, the extension runs `docker compose -f <file> up <service>` instead of a local binary.",
+          "scope": "window"
+        },
+        "expose.composeService": {
+          "type": "string",
+          "default": "expose",
+          "description": "Service name in the compose file.",
+          "scope": "window"
+        },
+
+        "expose.legacyPassword": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "**Deprecated**: Avoid storing passwords in settings.json. Prefer `Expose: Set Password (Secret Storage)`.",
+          "scope": "window"
+        }
+      }
+    }
+  },
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "1.109.0",
+    "@types/node": "25.2.3",
+    "typescript": "5.9.3",
+    "@vscode/vsce": "3.7.1"
+  }
+}
