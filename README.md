@@ -4,6 +4,56 @@ Run the **getExposed/expose** agent from VS Code or OpenVSCode Server. If you do
 
 > ⚠️ This is a **workspace** extension (runs on the server/remote). It won’t work on `vscode.dev` / `github.dev`.
 
+---
+
+## Install (from GitHub Releases)
+
+This extension is distributed as a **.vsix** on GitHub Releases.
+
+### Option A — VS Code / VSCodium UI
+1. Download the latest `.vsix` from [GitHub Releases](https://github.com/getExposed/expose-vscode/releases/latest/).
+2. Open **Extensions**.
+3. Click **…** → **Install from VSIX…**
+4. Select the `.vsix`, then reload the window if prompted.
+
+
+> Note: GitHub “latest” download URLs work best when the asset name is stable. If your VSIX name includes the version (common), use the scripts below (they discover the latest asset automatically).
+
+## Install via scripts (recommended)
+
+These scripts fetch the latest GitHub Release, download the .vsix, and install it using your editor’s CLI.
+
+### macOS / Linux (bash)
+#### Pipe to bash (quick):
+```bash
+curl -fsSL https://raw.githubusercontent.com/getExposed/expose-vscode/main/scripts/install-expose-vscode.sh | bash
+```
+
+#### VSCodium:
+```bash
+curl -fsSL https://raw.githubusercontent.com/getExposed/expose-vscode/main/scripts/install-expose-vscode.sh | CODE_BIN=codium bash
+```
+
+#### Safer: download then run:
+```bash
+curl -fsSLO https://raw.githubusercontent.com/getExposed/expose-vscode/main/scripts/install-expose-vscode.sh
+bash ./install-expose-vscode.sh
+```
+
+### Windows (PowerShell)
+#### Pipe to PowerShell (quick):
+```powershell
+iwr -useb https://raw.githubusercontent.com/getExposed/expose-vscode/main/scripts/install-expose-vscode.ps1 | iex
+```
+
+#### VSCodium:
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "iwr -useb https://raw.githubusercontent.com/getExposed/expose-vscode/main/scripts/install-expose-vscode.ps1 | iex; .\install-expose-vscode.ps1 -CodeBin codium"
+```
+
+> Remote note: If you’re using Remote-SSH / Dev Containers / Codespaces / OpenVSCode Server, install the VSIX in that same environment (run the script on the remote machine/container).
+
 ## Features
 - Start/stop the Expose agent and stream logs to an Output Channel
 - Run one-off commands with extra arguments
