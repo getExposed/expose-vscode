@@ -5,7 +5,7 @@
   "version": "0.6.0",
   "publisher": "dragonsecurity",
   "engines": {
-    "vscode": "^1.126.0"
+    "vscode": "^1.127.0"
   },
   "extensionKind": ["workspace"],
   "categories": ["Other"],
