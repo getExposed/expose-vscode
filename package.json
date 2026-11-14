@@ -5,7 +5,7 @@
   "version": "0.6.0",
   "publisher": "dragonsecurity",
   "engines": {
-    "vscode": "^1.145.3"
+    "vscode": "^1.146.0"
   },
   "extensionKind": ["workspace"],
   "categories": ["Other"],
@@ -165,7 +165,7 @@
     "package": "vsce package"
   },
   "devDependencies": {
-    "@types/vscode": "1.145.0",
+    "@types/vscode": "1.146.0",
     "@types/node": "25.9.9",
     "typescript": "5.9.3",
     "@vscode/vsce": "3.9.2"
